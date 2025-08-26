@@ -1,18 +1,18 @@
 import streamlit as st
 import pandas as pd
-
 # =======================
 # Example schedule data
 # =======================
 # schedule = [{'Course': 'PROG1', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T2'}, {'Course': 'PROG1', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'PROG2', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T3'}, {'Course': 'PROG2', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T4'}, {'Course': 'MATH', 'Session': 1, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'MATH', 'Session': 2, 'Instructor': 'Giath', 'Day': 'Mon', 'Time': 'T2'}, {'Course': 'ALGO', 'Session': 1, 'Instructor': 'Obai', 'Day': 'Wed', 'Time': 'T2'}, {'Course': 'ALGO', 'Session': 2, 'Instructor': 'Obai', 'Day': 'Wed', 'Time': 'T3'}]
-schedule = [{'Course': 'PROG1', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T3'}, {'Course': 'PROG1', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T2'}, {'Course': 'PROG2', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'PROG2', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Sun', 'Time': 'T4'}, {'Course': 'MATH', 'Session': 1, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T2'}, {'Course': 'MATH', 'Session': 2, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'ALGO', 'Session': 1, 'Instructor': 'Obai', 'Day': 'Wed', 'Time': 'T2'}, {'Course': 'ALGO', 'Session': 2, 'Instructor': 'Obai', 'Day': 'Wed', 'Time': 'T1'}, {'Course': 'PHY', 'Session': 1, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T3'}, {'Course': 'PHY', 'Session': 2, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T4'}, {'Course': 'PROG5', 'Session': 1, 'Instructor': 'Firas', 'Day': 'Wed', 'Time': 'T2'}, {'Course': 'PROG5', 'Session': 2, 'Instructor': 'Firas', 'Day': 'Sun', 'Time': 'T1'}]
+schedule = [{'Course': 'PROG_1', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Thu', 'Time': 'T2'}, {'Course': 'PROG_1', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Thu', 'Time': 'T1'}, {'Course': 'PROG_2', 'Session': 1, 'Instructor': 'Talal', 'Day': 'Mon', 'Time': 'T3'}, {'Course': 'PROG_2', 'Session': 2, 'Instructor': 'Talal', 'Day': 'Mon', 'Time': 'T1'}, {'Course': 'PROG_lab_1', 'Session': 1, 'Instructor': 'Ola', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'PROG_lab_2', 'Session': 1, 'Instructor': 'Shaza', 'Day': 'Mon', 'Time': 'T2'}, {'Course': 'PROG_lab_3', 'Session': 1, 'Instructor': 'Ola', 'Day': 'Sun', 'Time': 'T3'}, {'Course': 'PROG_lab_4', 'Session': 1, 'Instructor': 'Shaza', 'Day': 'Sun', 'Time': 'T2'}, {'Course': 'MATH_1', 'Session': 1, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T3'}, {'Course': 'MATH_1', 'Session': 2, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T2'}, {'Course': 'ALGO_1', 'Session': 1, 'Instructor': 'Obai', 'Day': 'Wed', 'Time': 'T1'}, {'Course': 'ALGO_1', 'Session': 2, 'Instructor': 'Obai', 'Day': 'Mon', 'Time': 'T3'}, {'Course': 'ALGO_2', 'Session': 1, 'Instructor': 'Obai', 'Day': 'Mon', 'Time': 'T2'}, {'Course': 'ALGO_2', 'Session': 2, 'Instructor': 'Obai', 'Day': 'Mon', 'Time': 'T1'}, {'Course': 'ALGO_lab_1', 'Session': 1, 'Instructor': 'Said', 'Day': 'Thu', 'Time': 'T2'}, {'Course': 'ALGO_lab_2', 'Session': 1, 'Instructor': 'Said', 'Day': 'Thu', 'Time': 'T1'}, {'Course': 'PHY_1', 'Session': 1, 'Instructor': 'Giath', 'Day': 'Sun', 'Time': 'T1'}, {'Course': 'PHY_1', 'Session': 2, 'Instructor': 'Giath', 'Day': 'Mon', 'Time': 'T3'}]
 
 df = pd.DataFrame(schedule)
 
 # =======================
 # Prepare display
 # =======================
-df["Display"] = df.apply(lambda r: f"{r['Course']} (S{r['Session']})/D.{r['Instructor']}\n", axis=1)
+df["Display"] = df.apply(lambda r: f"{r['Course']}/D.{r['Instructor']}\n", axis=1)
+
 
 # Pivot table: Day × Time, join multiple sessions per slot
 timetable = df.pivot_table(
